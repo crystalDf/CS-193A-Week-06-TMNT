@@ -1,12 +1,12 @@
 package com.star.tmnt;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +37,6 @@ public class MainFragment extends Fragment {
 
     private String mResultString;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main, container, false);
@@ -130,7 +129,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+    public void onViewStateRestored(Bundle savedInstanceState) {
         // without will lose power
         super.onViewStateRestored(savedInstanceState);
         // without will be also OK
@@ -173,13 +172,13 @@ public class MainFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case GET_DETAILS:
-                if (resultCode == getActivity().RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     String word = data.getStringExtra("word");
                     Toast.makeText(getActivity(), "You typed " + word, Toast.LENGTH_LONG).show();
                 }
                 break;
             case TAKE_PHOTO:
-                if (resultCode == getActivity().RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                     mImageView.setImageBitmap(bitmap);
                 }
